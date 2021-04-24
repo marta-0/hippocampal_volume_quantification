@@ -37,8 +37,20 @@ class UNetInferenceAgent:
         Returns:
             3D NumPy array with prediction mask
         """
+       
+        volume = med_reshape(volume, new_shape=(volume.shape[0], self.patch_size, self.patch_size))
         
-        raise NotImplementedError
+        out = np.zeros(volume.shape)
+        for slc_ix in range(volume.shape[0]):            
+            img = volume[slc_ix,:,:]
+            img = torch.from_numpy(img.astype(np.single)/np.max(img)).unsqueeze(0).unsqueeze(0)
+            
+            pred = self.model(img.to(self.device))
+            pred = np.squeeze(pred.cpu().detach())
+            
+            out[slc_ix,:,:] = torch.argmax(pred, dim=0)
+        
+        return out
 
     def single_volume_inference(self, volume):
         """
