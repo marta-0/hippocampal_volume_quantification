@@ -4,7 +4,7 @@
 
 <img src="out/Loss.png" width=400em>
 
-You will perform this section in the same workspace as Section 1: **Workspace 1**. This workspace has a Python virtual environment called **medai** [TODO: how are we doing this?] which is set up with everything that you need to analyze inspect the dataset and prepare it for machine learning.
+You will perform this section in the same workspace as Section 1: **Workspace 1**. This workspace has a Python virtual environment called **medai** which is set up with everything that you need to analyze inspect the dataset and prepare it for machine learning.
 
 In the directory called `section2/src` you will find the source code that forms the framework for your machine learning pipeline.
 
