@@ -1,8 +1,12 @@
-# Final Project Instructions
+# Quantifying Alzheimer's Disease Progression Through Automated Measurement of Hippocampal Volume
 
-This file contains background information and instructions for the final project.
+This project is part of the Udacity AI for Healthcare nanodegree program.
 
-## Quantifying Alzheimer's Disease Progression Through Automated Measurement of Hippocampal Volume
+The Project Overview and Parting Words below are taken from the starter description of the project delivered by Udacity. Results section presents some of the results achieved. For more detailed outcomes please refer to the files in each section directory.
+
+## Project Overview
+
+### Background
 
 Alzheimer's disease (AD) is a progressive neurodegenerative disorder that results in impaired neuronal (brain cell) function and eventually, cell death. AD is the most common cause of dementia. Clinically, it is characterized by memory loss, inability to learn new material, loss of language function, and other manifestations. 
 
@@ -30,7 +34,7 @@ As you might have guessed by now, we are going to build a piece of AI software t
 
 You have seen throughout the course that a large part of AI development effort is taken up by curating the dataset and proving clinical efficacy. In this project, we will focus on the technical aspects of building a segmentation model and integrating it into the clinician's workflow, leaving the dataset curation and model validation questions largely outside the scope of this project.
 
-## What You Will Build
+### What You Will Build
 
 In this project you will build an end-to-end AI system which features a machine learning algorithm that integrates into a clinical-grade viewer and automatically measures hippocampal volumes of new patients, as their studies are committed to the clinical imaging archive.
 
@@ -40,45 +44,44 @@ You will use the dataset that contains the segmentations of the right hippocampu
 
 After that, you will proceed to integrate the model into a working clinical PACS such that it runs on every incoming study and produces a report with volume measurements.
 
-## The Dataset
+### The Dataset
 
 We are using the "Hippocampus" dataset from the [Medical Decathlon competition](http://medicaldecathlon.com/). This dataset is stored as a collection of NIFTI files, with one file per volume, and one file per corresponding segmentation mask. The original images here are T2 MRI scans of the full brain. As noted, in this dataset we are using cropped volumes where only the region around the hippocampus has been cut out. This makes the size of our dataset quite a bit smaller, our machine learning problem a bit simpler and allows us to have reasonable training times. You should not think of it as "toy" problem, though. Algorithms that crop rectangular regions of interest are quite common in medical imaging. Segmentation is still hard.
 
-## The Programming Environment
+## Results
 
-You will have two options for the environment to use throughout this project:
+### Exploratory Data Analysis
 
-### Udacity Workspaces
+Exploratory Data Analysis involves:
+* viewing exemplary images in notebook and 3D Slicer,
+* investigating NIFTI files,
+* calculating hippocampus volumes and plotting the distribution,
+* finding outliers.
 
-[*Christa to put some canned common text about Udacity Workspaces*]
+Screenshot from 3D Slicer:
 
-### Local Environment
+![3D Slicer Screenshot](./section1/3D-Slicer-Screenshot.png)
 
-If you would like to run the project locally, you would need a Python 3.7+ environment with the following libraries for the first two sections of the project:
+### Model Training
 
-* nibabel
-* matplotlib
-* numpy
-* pydicom
-* PIL
-* json
-* torch (preferably with CUDA)
-* tensorboard
+UNet architecture is used to build the segmentation model. Metrics like Dice score, Jaccard score, Sensitivity and Specificity are implemented to evaluate the model performance.
 
-In the 3rd section of the project we will be working with three software products for emulating the clinical network. You would need to install and configure:
+Visualisations from Tensorboard:
 
-* [Orthanc server](https://www.orthanc-server.com/download.php) for PACS emulation
-* [OHIF zero-footprint web viewer](https://docs.ohif.org/development/getting-started.html) for viewing images. Note that if you deploy OHIF from its github repository, at the moment of writing the repo includes a yarn script (`orthanc:up`) where it downloads and runs the Orthanc server from a Docker container. If that works for you, you won't need to install Orthanc separately.
-* If you are using Orthanc (or other DICOMWeb server), you will need to configure OHIF to read data from your server. OHIF has instructions for this: https://docs.ohif.org/configuring/data-source.html
-* In order to fully emulate the Udacity workspace, you will also need to configure Orthanc for auto-routing of studies to automatically direct them to your AI algorithm. For this you will need to take the script that you can find at `section3/src/deploy_scripts/route_dicoms.lua` and install it to Orthanc as explained on this page: https://book.orthanc-server.com/users/lua.html
-* [DCMTK tools](https://dcmtk.org/) for testing and emulating a modality. Note that if you are running a Linux distribution, you might be able to install dcmtk directly from the package manager (e.g. `apt-get install dcmtk` in Ubuntu)
+![Image Data Mask at last step](./section2/out/Image_Data_Mask_last_step.png)
+![Prediction Probability Map at last step](./section2/out/Prediction_Probability_Map_last_step.png)
 
+### Clinical Network Integration
 
+Clinical network in this project consists of:
+* 'send_volumes.py' script which simulates sending volumes from MRI scanner to the PACS,
+* Orthanc - PACS server representation,
+* OHIF - viewer system,
+* AI module - HippoVolume.AI which predicts the hippocampus mask on the incoming image and calculates its volume.
 
+Screenshot from OHIF showing the final report with predicted mask and calculated volumes:
 
-
-
-
+![Report viewed in OHIF](./section3/out/OHIF&#32;-&#32;Study1.png)
 
 ## Parting Words
 
@@ -124,17 +127,6 @@ Some big cloud providers are eyeing the space closely, and running their own pro
 * Microsoft Research has a [project dubbed InnerEye](https://www.microsoft.com/en-us/research/project/medical-image-analysis/) that for the past 10+ years has been exploring the use of machine learning for a variety of medical imaging applications. One of the instructors of this course had the honor of spending a significant part of his career as a team member here.
 * Google DeepMind is a group within Google doing some cutting-edge AI research, including [some work on medical imaging](https://deepmind.com/blog/article/ai-uclh-radiotherapy-planning). We can credit them with the contribution to the invention of the U-net which has been prominently featured in this course.
 
-## Setting up local environment
-
-TODO: Instructions for how to get a copy of the project running on your local machine.  
-TODO: Instructions for setting up the environment from Sect3
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md]()
-
-## Sources
-
-[1] [www.sciencedirect.com/science/article/pii/S2213158219302542](https://www.sciencedirect.com/science/article/pii/S2213158219302542)  
-[2] [en.wikipedia.org/wiki/Hippocampus](https://en.wikipedia.org/wiki/Hippocampus)  
-[3] [medicaldecathlon.com/](http://medicaldecathlon.com/)
+This project is licensed under the MIT License.
