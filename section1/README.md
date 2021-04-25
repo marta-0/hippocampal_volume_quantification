@@ -1,3 +1,5 @@
+## Project Instructions
+
 ### Section 1: Curating a dataset of Brain MRIs
 
 <img src="img/Slicer.png" width=400em>
