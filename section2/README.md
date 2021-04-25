@@ -2,7 +2,7 @@
 
 ### Section 2: Training a segmentation CNN
 
-<img src="./readme.img/loss.png" width=400em>
+<img src="out/Loss.png" width=400em>
 
 You will perform this section in the same workspace as Section 1: **Workspace 1**. This workspace has a Python virtual environment called **medai** [TODO: how are we doing this?] which is set up with everything that you need to analyze inspect the dataset and prepare it for machine learning.
 
