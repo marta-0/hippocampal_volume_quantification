@@ -1,6 +1,6 @@
 ### Section 1: Curating a dataset of Brain MRIs
 
-<img src="./readme.img/Slicer.png" width=400em>
+<img src="img/Slicer.png" width=400em>
 
 You will perform this section in the **Workspace 1**. This workspace has a Python virtual environment called **medai** which is set up with everything that you need to train your ML model. This workspace also has a GPU which will speed up your training process quite significantly.
 
