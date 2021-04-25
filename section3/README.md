@@ -8,7 +8,7 @@ In this final section you will use some of the work you did for Section 2 to cre
 
 You will perform this section in a different workspace than the previous two sections: **Workspace 2**. This workspace is a simpler hardware, with no GPU, which is more representative of a clinical environment. This workspace also has a few tools installed in it, which is replicates the following clinical network setup:
 
-<img src="./readme.img/network_setup.png" width=400em>
+<img src="network_setup.png" width=400em>
 
 Specifically, we have the following software in this setup:
 
