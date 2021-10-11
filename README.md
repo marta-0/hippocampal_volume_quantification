@@ -2,7 +2,7 @@
 
 This project is part of the Udacity AI for Healthcare nanodegree program.
 
-The Project Overview and Parting Words below are taken from the starter description of the project delivered by Udacity. Results section presents some of the results achieved. For more detailed outcomes please refer to the files in each section directory.
+The **Project Overview** and **Parting Words** below are taken from the starter description of the project delivered by Udacity. The **Results** section presents some of the results achieved. For more detailed outcomes please refer to the files in each section directory.
 
 ## Project Overview
 
